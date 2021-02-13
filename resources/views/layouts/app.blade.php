@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         @livewireStyles
@@ -36,6 +37,9 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+            </main>
+            <main class="py-4">
+                @yield('content')
             </main>
         </div>
 
