@@ -11,12 +11,29 @@ class Refund extends Model
     use HasFactory;
 
     protected $fillable = [
-        'company',
-        'num_fly',
-        'num_booking',
-        'reason',
-        'state',
         'user_id',
+        'flight_from',
+        'flight_to',
+        'direct_flight',
+        'reason_1',
+        'reason_2',
+        'has_reason',
+        'reason_4',
+        'comment',
+        'email',
+        'flight_date',
+        'Airlines',
+        'flight_num',
+        'booking_num',
+        'first_name',
+        'last_name',
+        'birthdate',
+        'comfirm_email',
+        'adress',
+        'city',
+        'country',
+        'phone',
+        'status',
     ];
 
     public static function getPossibleEnumValues($name){

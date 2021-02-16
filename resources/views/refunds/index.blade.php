@@ -8,12 +8,12 @@
     @section('content')
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             <div class="row" style="margin-top: 5rem;">
-                <div class="col-lg-12 margin-tb">
-                    <div class="pull-left">
+                <div class="row justify-content-between">
+                    <div class="col-lg-4">
                         <h2>Demande en cours</h2>
                     </div>
-                    <div class="pull-right">
-                        <a class="btn btn-success" href="{{ route('refunds.create') }}">nouveau remboursement</a>
+                    <div class="col-md-auto">
+                        <a class="btn btn-success mb-2 mt-0" href="{{ route('refunds.create') }}">nouveau remboursement</a>
                     </div>
                 </div>
             </div>
@@ -27,26 +27,26 @@
             <table class="table table-bordered">
                 <tr>
                     <th>id</th>
-                    <th>company</th>
-                    <th>numéro vol</th>
-                    <th>numéro réservation</th>
-                    <th>motif</th>
-                    <th>status</th>
-                    <th>fait par</th>
+                    <th>départ</th>
+                    <th>arriver</th>
+                    <th>date de vol</th>
+                    <th>companie</th>
+                    <th>numéro de vol</th>
+                    <th>numéro de reservation</th>
                     <th width="280px">Action</th>
                 </tr>
                 @foreach ($data as $key => $value)
                 <tr>
-                    <td>{{ ++$i }}</td>
-                    <td>{{ $value->company }}</td>
-                    <td>{{ $value->num_fly }}</td>
-                    <td>{{ $value->num_booking }}</td>
-                    <td>{{ \Str::limit($value->reason, 100) }}</td>
-                    <td>{{ $value->state }}</td>
-                    <td>{{ $value->user_id }}</td>
+                    <td>{{ $value->id }}</td>
+                    <td>{{ $value->flight_from }}</td>
+                    <td>{{ $value->flight_to }}</td>
+                    <td>{{ $value->flight_date }}</td>
+                    <td>{{ $value->Airlines }}</td>
+                    <td>{{ $value->flight_num }}</td>
+                    <td>{{ $value->booking_num }}</td>
                     <td>
                         <form action="{{ route('refunds.destroy',$value->id) }}" method="POST">   
-                            <a class="btn btn-info" href="{{ route('refunds.show',$value->id) }}">Show</a>    
+                            <a class="btn btn-primary" href="{{ route('refunds.show',$value->id) }}">Show</a>    
                             <a class="btn btn-primary" href="{{ route('refunds.edit',$value->id) }}">Edit</a>   
                             @csrf
                             @method('DELETE')      

@@ -29,8 +29,12 @@ class RefundController extends Controller
      */
     public function create(Refund $refund)
     {
-        $state_options = Refund::getPossibleEnumValues('state');
-        return view('refunds.create',compact('state_options'));
+        $reason_1_options = Refund::getPossibleEnumValues('reason_1');
+        $reason_2_options = Refund::getPossibleEnumValues('reason_2');
+        $has_reason_options = Refund::getPossibleEnumValues('has_reason');
+        $reason_4_options = Refund::getPossibleEnumValues('reason_4');
+        $status_options = Refund::getPossibleEnumValues('status');
+        return view('refunds.create',compact('status_options','reason_1_options','reason_2_options','has_reason_options','reason_4_options'));
     }
 
     /**
@@ -41,15 +45,33 @@ class RefundController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request['user_id'] = Auth::id();
 
         $request->validate([
-            'company' => 'required',
-            'num_fly' => 'required',
-            'num_booking' => 'required',
-            'reason' => 'required',
-            'state' => 'required',
             'user_id' => 'required',
+            'flight_from' => 'required',
+            'flight_to' => 'required',
+            'direct_flight' => 'required',
+            'reason_1' => 'required',
+            'reason_2' => 'required',
+            'has_reason' => 'required',
+            'reason_4' => 'required',
+            'comment' => 'required',
+            'email' => 'required',
+            'flight_date' => 'required',
+            'Airlines' => 'required',
+            'flight_num' => 'required',
+            'booking_num' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'birthdate' => 'required',
+            'comfirm_email' => 'required',
+            'adress' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'phone' => 'required',
+            // 'status' => 'required',
         ]);
     
         Refund::create($request->all());
@@ -78,8 +100,12 @@ class RefundController extends Controller
     public function edit(Refund $refund)
     {
         
-        $state_options = Refund::getPossibleEnumValues('state');
-        return view('refunds.edit',compact('refund','state_options'));
+        $reason_1_options = Refund::getPossibleEnumValues('reason_1');
+        $reason_2_options = Refund::getPossibleEnumValues('reason_2');
+        $has_reason_options = Refund::getPossibleEnumValues('has_reason');
+        $reason_4_options = Refund::getPossibleEnumValues('reason_4');
+        $status_options = Refund::getPossibleEnumValues('status');
+        return view('refunds.edit',compact('refund','status_options','reason_1_options','reason_2_options','has_reason_options','reason_4_options'));
     }
 
     /**
@@ -92,11 +118,28 @@ class RefundController extends Controller
     public function update(Request $request, Refund $refund)
     {
         $request->validate([
-            'company' => 'required',
-            'num_fly' => 'required',
-            'num_booking' => 'required',
-            'reason' => 'required',
-            'state' => 'required',
+            'flight_from' => 'required',
+            'flight_to' => 'required',
+            'direct_flight' => 'required',
+            'reason_1' => 'required',
+            'reason_2' => 'required',
+            'has_reason' => 'required',
+            'reason_4' => 'required',
+            'comment' => 'required',
+            'email' => 'required',
+            'flight_date' => 'required',
+            'Airlines' => 'required',
+            'flight_num' => 'required',
+            'booking_num' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'birthdate' => 'required',
+            'comfirm_email' => 'required',
+            'adress' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'phone' => 'required',
+            // 'status' => 'required',
         ]);
     
         $refund->update($request->all());
